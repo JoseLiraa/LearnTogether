@@ -6,19 +6,27 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.joselira.learntogether.ui.theme.LearnTogetherTheme
+import java.nio.file.WatchEvent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +42,7 @@ class MainActivity : ComponentActivity() {
                         title = stringResource(R.string.title_screen),
                         first = stringResource(R.string.first_paragraph),
                         second = stringResource(R.string.second_paragraph),
-                        modifier = Modifier.padding(8.dp)
+                        //modifier = Modifier.padding(8.dp)
                     )
                 }
             }
@@ -45,36 +53,34 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun LearnText(title: String, first: String, second: String, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(WindowInsets.statusBars.asPaddingValues())
     )
     {
         Image(
             painterResource(id = R.drawable.bg_compose_background),
             contentDescription = stringResource(R.string.content_description),
-
+            contentScale = ContentScale.FillWidth
             )
         Text(
             text = title,
-            modifier = modifier
+            fontSize = 24.sp,
+            modifier = Modifier.padding(16.dp)
         )
         Text(
             text = first,
-            modifier = modifier
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp)
         )
         Text(
             text = second,
-            modifier = modifier
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(16.dp)
         )
     }
 }
 
-/*@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}*/
 
 @Preview(showBackground = true)
 @Composable
@@ -84,7 +90,7 @@ fun GreetingPreview() {
             title = stringResource(R.string.title_screen),
             first = stringResource(R.string.first_paragraph),
             second = stringResource(R.string.second_paragraph),
-            modifier = Modifier.padding(8.dp)
+            //modifier = Modifier.padding(8.dp)
         )
     }
 }
