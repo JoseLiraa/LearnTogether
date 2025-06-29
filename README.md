@@ -1,5 +1,4 @@
 # Compose Basics 💻
 
-## Android App 🛸
-### LearnTogether
+## LearnTogether | Android App 🛸
 A single screen app Composable Text and Image
